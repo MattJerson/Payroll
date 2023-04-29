@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Payroll Deduction Calculator</title>
+
+<script>
+function solve() {
+     var operators_If = document.getElementsByName("math_Operators");
+     var first_TextBox_Value = document.getElementById("number1_TextBox").value;
+     var no_two = document.getElementById("number2_TextBox").value; 
+
+if (first_TextBox_Value=="") {
+   var math_Results = "<span class='warning'><b style='color:red;'>Enter Your Rate Per Day!</span>";
+   document.getElementById('math_Results').innerHTML = math_Results;
+   return false;
+}
+
+else if (first_TextBox_Value <=99){
+var math_Results = "<span class='warning'><b style='color:red;'>Rate Per Day Shouldn't Be Lower Than 100!</span>";
+   document.getElementById('math_Results').innerHTML = math_Results;
+   return false;
+}
+
+else if (no_two=="") {
+    var math_Results = "<span class='warning'><b style='color:red;'>Number of Days Shouldn't Be Empty!</span>";
+    document.getElementById('math_Results').innerHTML = math_Results;
+    return false;
+}
+
+else if (no_two <=0){
+var math_Results = "<span class='warning'><b style='color:red;'>Number of Days Shouldn't Be Zero!</span>";
+   document.getElementById('math_Results').innerHTML = math_Results;
+   return false;
+}
+
+if (operators_If[0].checked == true) {
+    total = parseInt(first_TextBox_Value) * parseInt(no_two);
+    sum = total * 0.10;							
+    results = "<span class='message'> The 10% of " + total 
+               + " is <b style='color:red;'>" + sum +"</b>.</span>";
+    document.getElementById('math_Results').innerHTML = results;
+    return false;
+} 
+else if (operators_If[1].checked == true) {
+    total = parseInt(first_TextBox_Value) * parseInt(no_two);
+    diff = total * 0.07;					
+    results = "<span class='message'> The 7% of " 
+              + total + " is <b style='color:red;'>" + Math.trunc(diff) +"</b>.</span>";
+     document.getElementById('math_Results').innerHTML = results;
+     return false;
+} 
+else if (operators_If[2].checked == true) {
+    total = parseInt(first_TextBox_Value) * parseInt(no_two);
+     product = total * 0.05;				
+     results = "<span class='message'>The 5% of " 
+             + total + " is <b style='color:red;'>" + product +"</b>.</span>";
+     document.getElementById('math_Results').innerHTML = results;
+     return false;
+} 
+else if (operators_If[3].checked == true) {
+    total = parseInt(first_TextBox_Value) * parseInt(no_two);
+     quotient = total * 0.12;
+     results = "<span class='message'>The 12% of " 
+             + total + " is <b style='color:red;'>" + quotient +"</b>.</span>";
+     document.getElementById('math_Results').innerHTML = results;
+     return false;
+} 
+else {
+     var math_Results = "<span class='warning'><b style='color:red;'>Select Your Payroll Deductions!</span>";
+     document.getElementById('math_Results').innerHTML = math_Results;
+     return false;
+     }
+return true;
+}
+
+function reset_Operators() {
+    document.getElementById('math_Results').innerHTML = '';
+    }
+function clear(){
+    document.getElementById('math_Results').innerHTML = "";
+    first_TextBox_Value="";
+    no_two="";
+    first_TextBox_Value.focus();
+    }
+</script>
+
+</head>
+
+<body>
+
+<br />
+<h1>Payroll Deduction Calculator Using Radio Button</h1>
+
+<form action="" method="POST">
+<table cellpadding="1" cellspacing="1" style="text-align:left;" width="40%" border="0">
+	<tr>
+		<td><label>Rate Per Day</label></td>
+		<td><input type="number" name="first_TextBox_Value" id="number1_TextBox" autofocus="autofocus"></td>
+	</tr>
+	<tr>
+		<td><label>Number of Days</label></td>
+		<td><input type="number" name="second_TextBox_Value" id="number2_TextBox"></td>
+	</tr>
+</table>
+<h2>Deductions</h2>
+<table cellpadding="5" cellspacing="5" style="text-align:left;" width="40%" border="0">
+	<tr>
+		<td><input type="radio" name="math_Operators" onclick="reset_Operators();" />   <label style="color:blue;">SSS(10%)</label></td>
+		<td><input type="radio" name="math_Operators" onclick="reset_Operators();" />   <label style="color:blue;">Pag-Ibig(7%)</label></td>
+	</tr>
+	<tr>
+		<td><input type="radio" name="math_Operators" onclick="reset_Operators();" />   <label style="color:blue;">Philhealth(5%)</label></td>
+		<td><input type="radio" name="math_Operators" onclick="reset_Operators();" />   <label style="color:blue;">Tax(12%)</label></td>
+	</tr>
+</table>
+<br />
+<br />           
+<input type="submit" value="Compute" onclick="return solve();" />
+<input type="submit" value="Clear" onclick="return clear();" />
+<br />
+<br />
+<div id="math_Results"></div>
+</form>
+ 
+</body>
+
+</html>
+
+<div id="featured"></div>
+
+  <div id="copyright" class="container">
+	            <p>Matt Jerson Figueroa BCS21 Mid Lab Exam 1</p>
+            </div>
